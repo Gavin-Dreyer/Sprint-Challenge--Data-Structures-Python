@@ -17,14 +17,29 @@ duplicates = []  # Return the list of duplicates in this data structure
 #     for name_2 in names_2:
 #         if name_1 == name_2:
 #             duplicates.append(name_1)
-for name_1 in names_1:
-    duplicates.append(name_1)
-for name_2 in names_2:
-    duplicates.append(name_2)
+
+# Sorts and filters out any duplicates within names_1
+names_1.sort()
+names_1 = [names_1[i] for i in range(
+    len(names_1) - 1) if names_1[i] != names_1[i + 1]]
+
+# Sorts and filters out any duplicates within names_2
+names_2.sort()
+names_2 = [names_2[i] for i in range(
+    len(names_2) - 1) if names_2[i] != names_2[i + 1]]
+
+# adds non-duplicates to the duplicates array and sorts
+for i in range(len(names_1)):
+    duplicates.append(names_1[i])
+for i in range(len(names_2)):
+    duplicates.append(names_2[i])
 
 duplicates.sort()
+
+# returns only duplicates
 duplicates = [duplicates[i] for i in range(
     len(duplicates) - 1) if duplicates[i] == duplicates[i + 1]]
+
 
 end_time = time.time()
 print(f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
